@@ -12,12 +12,15 @@ app.set('view engine', 'ejs')
 
 
 app.get("/", (req, res) => {
-    console.log("here")
-    res.render("index", {text:"world"})
+    res.render("index", {})
 })
 
-const userRouter = require('./routes/users')
+app.get("/question-type", (req, res) => {
+    res.render("question-type", {})
+})
 
-app.use("/users", userRouter)
+const questionRouter = require('./routes/question')
+
+app.use("/question", questionRouter)
 
 app.listen(port, () => console.info(`App listening on port ${port}`))
