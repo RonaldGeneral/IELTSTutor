@@ -1,0 +1,85 @@
+<div id="writing">
+    <div class="w-75 bg-light m-auto px-4 py-3 rounded-3 mb-5" >
+        <%- task2_question %>
+    </div>
+
+    <script>
+        function toggleDisplay(e, hideClass, buttonClass) {
+            let target = document.getElementById(e.dataset.section);
+            if(!target.classList.contains("d-none")) return;
+
+            
+            let hideList = document.getElementsByClassName(buttonClass)
+            for(let i = 0; i < hideList.length; i++) {
+                hideList[i].classList.remove("bg-info"); 
+            }
+            e.classList += " bg-info"
+            
+            hideList = document.getElementsByClassName(hideClass)
+            for(let i = 0; i < hideList.length; i++) {
+                hideList[i].classList += " d-none"; 
+            }
+            target.classList.remove("d-none");
+        }
+    </script>
+
+    <div class="bg-light m-auto p-4 rounded-3 fw-bold">
+        <div class="d-flex w-100 justify-content-center p-3">
+            <div class="bg-background-default flex h-8 w-8 items-center justify-center ">
+
+            </div>
+            <div
+                class="border d-flex rounded-pill">
+                <div
+                    class="px-4 py-1 rounded-pill bg-info m-1 btn-essay" data-section="evaluate-essay" onclick="toggleDisplay(this, 'hide-essay', 'btn-essay')" style="cursor: pointer;">
+                    <p class="m-0 text-nowrap text-sm font-semibold transition-[text] text-content-onBrand">
+                        Evaluate My Essay</p>
+                </div>
+                <div class="px-4 py-1 rounded-pill m-1 btn-essay" data-section="sample-essay" onclick="toggleDisplay(this, 'hide-essay', 'btn-essay')" style="cursor: pointer;">
+                    <p class="m-0 text-content-tertiary text-nowrap text-sm font-semibold transition-[text]">
+                        Sample Essay</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 p-4 ">
+            <div id="evaluate-essay" class="w-100 items-center  hide-essay">
+                <textarea
+                    class="fs-5 w-100 flex-1 resize-none rounded-lg border-0 bg-transparent outline-none md:min-h-[300px] md:rounded-none md:p-10 md:text-lg"
+                    style="min-height: 500px;" autofocus="" placeholder="Enter response..." id="text-input"></textarea>
+                <div class="d-flex w-100 mt-3 justify-content-center">
+                    <button class="btn btn-primary p-3 px-4 rounded-pill">Evaluate</button>
+                </div>
+            </div>
+            <div id="sample-essay" class="w-100 fs-5 fw-normal d-none hide-essay">
+                <%- task2_answer %>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-background-default flex w-full flex-col items-start gap-3 rounded-3xl p-10"
+        style="width:73%; margin-top: 400px;">
+        <p id="eva" class="m-0 text-content-primary text-xl font-semibold leading-7">Score and suggestions</p>
+        <p class="m-0 text-content-secondary text-lg leading-7">
+            <u>Score</u>
+        <p>Overall Score: 6</p>
+        <p>Task Response: 5</p>
+        <p>Coherence and Cohesion: 6</p>
+        <p>Lexical Resource: 6</p>
+        <p>Grammatical Range and Accuracy: 7</p><br>
+        <u>Analysis of Weaknesses</u>
+        <ol>
+            <li style="margin: 10px 0;">Repeated words: The word "advertising" is used too much. It would be better to
+                use different words like "promotion" or "commercial" instead.</li>
+            <li style="margin: 10px 0;">Not enough detail: The essay talks about advertising in general, but it doesn't
+                give specific examples. It would be better to mention real ads or products to explain the points better.
+            </li>
+            <li style="margin: 10px 0;">Too many general statements: The essay makes broad statements without giving
+                proof. It's important to show how advertising really affects people with real examples.</li>
+            <li style="margin: 10px 0;">Informal language: Some words used are too casual for an essay. It's better to
+                use more serious and academic words.</li>
+            <li style="margin: 10px 0;">Unconnected ideas: The essay's ideas don't flow smoothly. It would be better to
+                use words that connect the different parts of the essay together.</li>
+        </ol>
+        </p>
+    </div>
+</div>

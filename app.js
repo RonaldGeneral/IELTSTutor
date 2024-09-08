@@ -4,7 +4,8 @@ const expressLayouts = require('express-ejs-layouts')
 const app = express()
 const port = 3000
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'));
 
 app.use(expressLayouts)
 app.set('layout', './layouts/layout')
