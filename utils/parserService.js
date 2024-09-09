@@ -6,12 +6,11 @@ class ParserService {
 
     constructor(){}
 
-    parseWriting(input) {
+    parseTag(input, tag) {
         const $ = cheerio.load(input);
-        const ins = $('ins').html();
-        const ans = $('ans').html();
+        const output = $(tag).html();
 
-        return {instruction: ins, answer: ans};
+        return output;
     }
 }
 
