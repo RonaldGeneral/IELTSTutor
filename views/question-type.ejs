@@ -6,31 +6,27 @@
         color: rgb(79, 79, 79);
     }
 
-    a {
+    div#writing-tab, #reading-tab {
         color: black;
         text-decoration: none;
     }
 </style>
 <div class="d-flex flex-row flex-wrap text-center m-auto justify-content-evenly p-4 w-75 mb-3">
-    <a href="">
-        <div class="card rounded-pill p-3 mb-3 hoverable">
-            <div class="card-body">
-                <img src="/img/writing.webp" alt="Feature image" class="rounded-circle" width="100px" height="100px" />
-                Writing Task
-            </div>
+    <div class="card rounded-pill p-3 mb-3 hoverable" id="writing-tab">
+        <div class="card-body">
+            <img src="/img/writing.webp" alt="Feature image" class="rounded-circle" width="100px" height="100px" />
+            Writing Task
         </div>
-    </a>
-    <a href="">
-        <div class="card rounded-pill p-3 mb-3 hoverable">
-            <div class="card-body">
-                <img src="/img/reading.webp" alt="Feature image" class="rounded-circle" width="100px" height="100px" />
-              Reading Task
-            </div>
+    </div>
+    <div class="card rounded-pill p-3 mb-3 hoverable" id="reading-tab">
+        <div class="card-body">
+            <img src="/img/reading.webp" alt="Feature image" class="rounded-circle" width="100px" height="100px" />
+            Reading Task
         </div>
-    </a>
+    </div>
 </div>
-<div class="bg-light p-4 w-75 m-auto px-5" id="writing-div">
-    <form action="/question/writing" method="post">
+<div class="bg-light p-4 w-75 m-auto px-5 d-none" id="writing-div">
+    <form action="/writing" method="post">
         <h4>Task 1</h4>
         <p>In Task 1, you are asked to describe some visual information (graph/table/chart/diagram). You need to write 150 words in about 20 minutes.</p>
         <h4>Task 2</h4>
@@ -39,3 +35,28 @@
         <button class="btn btn-primary my-3">Generate</button>
     </form>
 </div>
+<div class="bg-light p-4 w-75 m-auto px-5 d-none" id="reading-div">
+    <form action="/reading" method="post">
+        <h4>Task 1</h4>
+        <p>In Task 1, you are asked to describe some visual information (graph/table/chart/diagram). You need to write 150 words in about 20 minutes.</p>
+
+        <button class="btn btn-primary my-3">Generate</button>
+    </form>
+</div>
+<script>
+    let selectColor = 'bg-secondary bg-gradient'
+    $(document).ready(function () {
+        $("#writing-tab").click(function () {
+            $(this).addClass(selectColor);
+            $('#reading-tab').removeClass(selectColor);
+            $('#writing-div').removeClass('d-none');
+            $('#reading-div').addClass('d-none');
+        });
+        $("#reading-tab").click(function () {
+            $(this).addClass(selectColor);
+            $('#writing-tab').removeClass(selectColor);
+            $('#reading-div').removeClass('d-none');
+            $('#writing-div').addClass('d-none');
+        });
+    });
+</script>

@@ -1,6 +1,6 @@
 <div id="writing">
     <div class="w-75 bg-light m-auto px-4 py-3 rounded-3 mb-5" >
-        <%- task2_question %>
+        <%- instruction %>
     </div>
 
     <div class="bg-light m-auto p-4 rounded-3 fw-bold">
@@ -23,14 +23,22 @@
         </div>
         <div class="w-100 p-4 ">
             <div id="evaluate-essay" class="w-100 items-center">
-
-                <textarea
-                    class="fs-5 w-100 flex-1 resize-none rounded-lg border-0 bg-transparent outline-none md:min-h-[300px] md:rounded-none md:p-10 md:text-lg"
-                    style="min-height: 500px;" autofocus="" placeholder="Enter response..." id="essay2"></textarea>
-                <div class="d-flex w-100 mt-3 justify-content-center">
-                    <button id="evaluateAns2" class="btn btn-primary p-3 px-4 rounded-pill">Evaluate</button>
-                </div>
-                
+                <form id="evaluateForm" action="/writing/getEvaluate">
+                    <input type="hidden" name="instruction" value="<%= instruction %>" />
+                    <input type="hidden" name="taskType" value="<%= taskType %>" />
+                    <textarea
+                        class="fs-5 w-100 flex-1 resize-none rounded-lg border-0 bg-transparent outline-none md:min-h-[300px] md:rounded-none md:p-10 md:text-lg"
+                        style="min-height: 500px;" autofocus="" placeholder="Enter response..." id="essay2" name="answer" required></textarea>
+                    <div class="d-flex w-100 mt-3 justify-content-center">
+                        <button id="evaluateAns2" class="btn btn-primary p-3 px-4 rounded-pill">
+                            <span id="evaluateLoading" class="d-none">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            </span>
+                            Evaluate
+                        </button>
+                        <script src="/js/evaluateAnswer.js" defer></script>
+                    </div>
+                </form>
             </div>
             <div id="sampleEssay" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -41,10 +49,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body fs-6 fw-normal" id="answerBox">
-                        </div>
-                        <div class="modal-footer text-center">
-                            <button id="generateAns" type="button" class="btn btn-primary m-auto">Generate</button>
-                            <script src="/js/generateAnswer.js" defer></script>
+                            <%- answer %>
                         </div>
                     </div>
                 </div>
@@ -54,28 +59,9 @@
 
     <div class="bg-light m-auto p-5 rounded-3 fw-normal mt-5 w-100"
         style="width:73%; margin-top: 400px;">
-        <p  class="m-0 fs-4 fw-bold mb-3">Score and suggestions</p>
-        <p id="eva2" class="m-0 text-content-secondary text-lg leading-7">
-            <u>Score</u>
-        <p>Overall Score: 6</p>
-        <p>Task Response: 5</p>
-        <p>Coherence and Cohesion: 6</p>
-        <p>Lexical Resource: 6</p>
-        <p>Grammatical Range and Accuracy: 7</p><br>
-        <u>Analysis of Weaknesses</u>
-        <ol>
-            <li style="margin: 10px 0;">Repeated words: The word "advertising" is used too much. It would be better to
-                use different words like "promotion" or "commercial" instead.</li>
-            <li style="margin: 10px 0;">Not enough detail: The essay talks about advertising in general, but it doesn't
-                give specific examples. It would be better to mention real ads or products to explain the points better.
-            </li>
-            <li style="margin: 10px 0;">Too many general statements: The essay makes broad statements without giving
-                proof. It's important to show how advertising really affects people with real examples.</li>
-            <li style="margin: 10px 0;">Informal language: Some words used are too casual for an essay. It's better to
-                use more serious and academic words.</li>
-            <li style="margin: 10px 0;">Unconnected ideas: The essay's ideas don't flow smoothly. It would be better to
-                use words that connect the different parts of the essay together.</li>
-        </ol>
-        </p>
+        <p class="m-0 fs-4 fw-bold mb-3">Score and suggestions</p>
+        <span id="eva2" class="m-0 text-content-secondary fs-5 leading-7">
+            
+        </span>
     </div>
 </div>
