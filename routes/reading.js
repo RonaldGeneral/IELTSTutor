@@ -6,77 +6,95 @@ const ParserService = require("../utils/parserService").ParserService;
 const questionService = new QuestionService();
 const parserService = new ParserService();
 
-const multiple = {
-    "article": "<h4>The Impact of Technology on the Modern Workplace</h4><p>The rapid advancement of technology has profoundly transformed the modern workplace. Automation, artificial intelligence (AI), and cloud computing are reshaping industries, creating new opportunities and challenges for employees. While technology has undoubtedly increased efficiency and productivity, it has also raised concerns about job displacement and the need for workforce reskilling. </p><p>One of the most significant impacts of technology has been the rise of automation. Robots and AI-powered systems are increasingly being used to perform tasks previously handled by humans. This has led to job losses in manufacturing, logistics, and other sectors. However, it has also created new opportunities in fields related to technology development, maintenance, and data analysis. </p><p>Another key trend is the increasing use of cloud computing. This allows businesses to access and share data remotely, fostering collaboration and improving communication. It also enables employees to work from anywhere with an internet connection, leading to a more flexible and mobile workforce. However, concerns about cybersecurity and data privacy have also emerged. </p><p>Technology has also revolutionized communication in the workplace. Instant messaging, video conferencing, and social media platforms have made it easier for colleagues to connect and collaborate, regardless of their location. This has facilitated remote work and improved communication efficiency. Nevertheless, the constant connectivity can lead to work-life balance issues and increased stress. </p><p>In conclusion, technology has had a profound impact on the modern workplace, bringing both benefits and challenges. While it has increased efficiency and productivity, it has also raised concerns about job displacement and the need for reskilling. Adapting to these changes and embracing new technologies will be crucial for employees to thrive in the future workplace. </p>",
+const mc = {
+    "article": "<h4>The Importance of Biodiversity</h4>\n<p>Biodiversity, the variety of life on Earth, is essential for a healthy planet and thriving human societies. It provides us with countless benefits, from food and medicine to clean air and water. However, human activities are causing a rapid decline in biodiversity, threatening the very foundations of our existence.</p>\n<p>One of the most significant threats is habitat loss. As humans expand their footprint, they destroy natural habitats, leaving countless species with nowhere to live. Deforestation, urbanization, and agricultural intensification are major drivers of habitat loss, leading to the extinction of numerous species.</p>\n<p>Climate change further exacerbates the problem. Rising temperatures, changing precipitation patterns, and extreme weather events disrupt ecosystems and force species to adapt or perish. Coral reefs, for example, are highly vulnerable to warming waters, bleaching and dying off at an alarming rate.</p>\n<p>The consequences of biodiversity loss are far-reaching. Loss of species can disrupt ecosystem services, such as pollination, pest control, and water purification. This can have a detrimental impact on food security, human health, and economic well-being.</p>\n<p>Protecting biodiversity is crucial for our future. We need to adopt sustainable practices that minimize our impact on the environment. This includes reducing our consumption, protecting natural habitats, and mitigating climate change. By taking action now, we can ensure a healthy and vibrant planet for generations to come.</p>",
     "questions": [
       {
-        "question": "<h4>What is the primary focus of the article?</h4>",
+        "question": "<b>What is the primary argument presented in the article?</b>",
         "options": [
-          "The history of technology in the workplace.",
-          "The advantages and disadvantages of technology in the workplace.",
-          "The future of technology in the workplace.",
-          "The impact of technology on employee productivity."
+          "Biodiversity is crucial for human well-being and a healthy planet.",
+          "Climate change is the biggest threat to biodiversity.",
+          "Human activities are destroying natural habitats, leading to biodiversity loss.",
+          "Protecting biodiversity requires global cooperation and sustainable practices."
         ],
-        "answer": "The advantages and disadvantages of technology in the workplace.",
-        "explanation": "The article discusses both the positive and negative aspects of technology's impact on the modern workplace, highlighting its influence on efficiency, job displacement, and workforce reskilling."
+        "answer": "1",
+        "explanation": "The article emphasizes the vital importance of biodiversity for human well-being and a healthy planet, highlighting the threats it faces and the need for conservation."
       },
       {
-        "question": "<h4>According to the article, which of the following is NOT a consequence of automation in the workplace?</h4>",
+        "question": "<b>Which of the following is NOT mentioned as a major driver of habitat loss?</b>",
         "options": [
-          "Increased efficiency and productivity.",
-          "Job losses in certain sectors.",
-          "Reduced demand for skilled labor.",
-          "Improved employee morale."
+          "Pollution",
+          "Deforestation",
+          "Urbanization",
+          "Agricultural intensification"
         ],
-        "answer": "Improved employee morale.",
-        "explanation": "The article suggests that automation may lead to job losses and reduced demand for skilled labor, potentially impacting employee morale negatively. The article doesn't mention improved morale as a result of automation."
+        "answer": "1",
+        "explanation": "The article focuses on deforestation, urbanization, and agricultural intensification as the main drivers of habitat loss. While pollution can contribute to environmental degradation, it is not specifically mentioned in this context."
       },
       {
-        "question": "<h4>What is a key advantage of cloud computing mentioned in the article?</h4>",
+        "question": "<b>How does climate change impact biodiversity?</b>",
         "options": [
-          "Increased data security.",
-          "Reduced reliance on physical servers.",
-          "Enhanced communication and collaboration.",
-          "Lower costs for software development."
+          "It increases the rate of species extinction.",
+          "It causes habitat fragmentation and isolation.",
+          "It disrupts ecosystems and forces species to adapt.",
+          "All of the above."
         ],
-        "answer": "Enhanced communication and collaboration.",
-        "explanation": "The article states that cloud computing allows businesses to share data remotely, fostering collaboration and improving communication among employees."
+        "answer": "4",
+        "explanation": "The article states that climate change disrupts ecosystems, forcing species to adapt or perish. This leads to species extinction, habitat fragmentation, and isolation."
       },
       {
-        "question": "<h4>Which of the following is a potential downside of the increased use of technology for communication in the workplace?</h4>",
+        "question": "<b>What is the primary consequence of losing biodiversity?</b>",
         "options": [
-          "Increased workload for employees.",
-          "Difficulty in finding qualified employees.",
-          "Limited access to information for employees.",
-          "Blurred lines between work and personal life."
+          "Loss of food security",
+          "Economic decline",
+          "Disruption of ecosystem services",
+          "Increased vulnerability to diseases"
         ],
-        "answer": "Blurred lines between work and personal life.",
-        "explanation": "The article mentions that constant connectivity due to technology-driven communication can lead to work-life balance issues and increased stress, suggesting blurred lines between work and personal life as a potential downside."
+        "answer": "3",
+        "explanation": "The article emphasizes that biodiversity loss disrupts ecosystem services, such as pollination and water purification, leading to a variety of consequences."
       },
       {
-        "question": "<h4>What is the author's overall stance on the impact of technology on the modern workplace?</h4>",
+        "question": "<b>What action does the article suggest for protecting biodiversity?</b>",
         "options": [
-          "Technology has a purely positive impact on the workplace.",
-          "Technology has a purely negative impact on the workplace.",
-          "Technology has both positive and negative impacts on the workplace.",
-          "Technology's impact on the workplace is unpredictable."
+          "Developing new technologies to combat climate change",
+          "Imposing stricter regulations on industries",
+          "Adopting sustainable practices that minimize our impact on the environment",
+          "Creating protected areas for endangered species"
         ],
-        "answer": "Technology has both positive and negative impacts on the workplace.",
-        "explanation": "The author acknowledges the benefits of technology in terms of efficiency and productivity but also highlights concerns about job displacement and the need for reskilling, suggesting a balanced perspective on its impact."
+        "answer": "3",
+        "explanation": "The article advocates for sustainable practices, such as reducing consumption and protecting natural habitats, as a way to protect biodiversity."
       }
     ]
 }
 
 router.post("/", async (req, res) => {
-    let taskType = "IELTS Academic Reading Multiple Choice";
-    // let text = await questionService.writingTask(taskType);
-    // let instruction = parserService.parseTag(text, "ins");
-    // let answer = parserService.parseTag(text, "ans");
+    if(!req.body || !req.body.taskType ) {
+        res.sendStatus(403);
+        return;
+    }
 
+    let taskType;
+    switch(req.body.taskType) {
+        case "1":
+            taskType = "IELTS Academic Reading Multiple Choice";    
+            // let text = await questionService.readingTask(taskType);
+            // let mc = parserService.parseJSON(text);
+            res.render("reading-mc", {
+                data: mc, taskType
+            });
+            return
+        case "2":
+            taskType = "IELTS Academic Reading Match Headings";    
+            // let text = await questionService.readingTask(taskType);
+            // let mc = parserService.parseJSON(text);
+            res.render("reading-mh", {
+                data: mc, taskType
+            });
+            return
+        
+    }
     
-    res.render("reading", {
-        data: multiple, taskType
-    });
+    return
 })
 
 router.post("/getEvaluate", async (req, res) => {

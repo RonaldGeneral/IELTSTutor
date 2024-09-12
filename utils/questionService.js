@@ -4,6 +4,31 @@ const { GoogleGenerativeAI, TaskType } = require("@google/generative-ai");
 dotenv.config({ path: ".env.local", debug: true });
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
+const readingTaskInst = {
+    "IELTS Academic Reading Multiple Choice": `You are IELTS test developer. 
+Format your response as an HTML essay using properly enclosed HTML tags limited to (<h4>, <p>, <b>, <i>) to style the text.  
+Instruction:
+1. Generate a concise article on an IELTS-appropriate topic. Aim for a length of 300-500 words.
+2. Create 3-8 multiple-choice questions based on the article. Prioritize questions that test main ideas, details, inferences, and evaluative skills.
+3. Provide 4 answer options for each question. Keep options clear, concise, and relevant.
+4. Determine the correct answer and provide a brief explanation referencing the article.
+
+Output as valid JSON format:
+{
+  "article": "<article text>",
+  "questions": [
+    {
+      "question": "<question>",
+      "options": ["<option 1>", "<option 2>", "<option 3>", "<option 4>"],
+      "answer": "<correct option number>",
+      "explanation": "<brief explanation>"
+    },
+    // ... more questions
+  ]
+}`,
+
+}
+
 class QuestionService {
 
     #modelTask;
@@ -65,33 +90,15 @@ class QuestionService {
     }
 
     async readingTask(taskType) {
+        if(!readingTaskInst[taskType]) return
+
         this.#modelTask = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
-            systemInstruction: `You are IELTS test developer. 
-Format your response as an HTML essay using properly enclosed HTML tags limited to (<h4>, <p>, <b>, <i>) to style the text.  
-Instruction:
-1. Generate a concise article on an IELTS-appropriate topic. Aim for a length of 300-500 words.
-2. Create 3-8 multiple-choice questions based on the article. Prioritize questions that test main ideas, details, inferences, and evaluative skills.
-3. Provide 4 answer options for each question. Keep options clear, concise, and relevant.
-4. Determine the correct answer and provide a brief explanation referencing the article.
-
-Output as valid JSON format:
-{
-  "article": "<article text>",
-  "questions": [
-    {
-      "question": "<question>",
-      "options": ["<option 1>", "<option 2>", "<option 3>", "<option 4>"],
-      "answer": "<correct answer>",
-      "explanation": "<brief explanation>"
-    },
-    // ... more questions
-  ]
-}`,
+            systemInstruction: readingTaskInst[taskType],
         })
         
         const prompt =
-            "generate a set of multiple-choice questions with difficulty of IELTS Academic Reading section 3";
+            "generate a set of "+taskType+" question";
 
         const result = await this.#modelTask.generateContent(prompt);
         const response = await result.response;
