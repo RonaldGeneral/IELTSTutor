@@ -27,6 +27,29 @@ Output as valid JSON format:
   ]
 }`,
 
+    "IELTS Academic Reading Matching Headings": `You are IELTS test developer. 
+Format your response as an HTML essay using properly enclosed HTML tags limited to (<h4>, <p>, <b>, <i>, <ul>,<li>) to style the text.  
+Instruction:
+1. Generate a concise article on an IELTS-appropriate topic. Aim for a length of 300-500 words.
+2. Divide the article into 4-6 paragraphs with clear themes and label each paragraphs at the start with alphabet such as "<b>A. </b>".
+3. Create 5-7 headings that accurately summarize the main ideas. Include distractors.
+4. Randomize the headings. Keep article and headings concise. Avoid overly broad or specific headings.
+5. Ensure logical connections between headings and paragraphs. 
+
+Output as valid JSON format:
+{
+  "article": "<article text>",
+  "headings": ["<heading 1>", "<heading 2>", "<heading 3>", "<heading 4>"],
+  "questions": [
+    {
+      "paragraph": "<paragraph letter>",
+      "answer": "<correct heading number in lowercase roman numbers>"
+    },
+    // ... more questions
+  ]
+}`,
+
+
 }
 
 class QuestionService {

@@ -9,29 +9,38 @@
         <div class="fs-6 lh-lg">
             <%- data.article %>
         </div>
+        <div class="fs-6 lh-lg mt-4">
+            <h5>List of Headings</h5>
+            <ol type="i">
+                <% for(var i=0; i < data.headings.length; i++) { %>
+                    <li><%= data.headings[i] %></li>
+                <% } %>
+            </ol>
+        </div>
+        <div class="fs-6 mt-4">
+            <hr />
+            <p>The reading passage has <%= numParagraph %> paragraphs, <b><%= 'A-' + String.fromCharCode(64 + numParagraph) %></b>.</p>
+            <p>Choose the correct heading for each paragraph from the list of headings below.</p>
+            <p>Write the correct number, <b>i-<%= lastHeadingRoman %></b>, as your answer to each question.</p>
+            <hr/>
+        </div>
     </div>
 
     <% for(var i=0; i < data.questions.length; i++) { %>
         <div class="border p-4 rounded-3 mt-5">
             <b class="pb-3">Q<%= i+1 %></b>
             <span class="d-block fs-6 my-3">
-                <%- data.questions[i].question %>
+                Paragraph <%= data.questions[i].paragraph %>
             </span>
-
-            <% for(var j = 0; j < data.questions[i].options.length; j++) { %>
-                <label class="form-check-label d-block my-2 fs-6" for="<%= 'option-'+ i + '-' + j %>">
-                    <input class="form-check-input" type="radio" name="<%= 'option-'+ i %>" id="<%= 'option-'+ i + '-' + j %>">
-                    <%= data.questions[i].options[j] %>
-                </label>
-            <% } %>
-
+            <input class="form-control w-25" >
+            
             <button class="btn btn-outline-dark my-2" 
                 type="button" data-bs-toggle="collapse" data-bs-target="#<%= 'collapse-' + i%>" aria-expanded="false" aria-controls="<%= 'collapse-' + i%>">
                 Show answer
             </button>
             <div class="collapse" id="<%= 'collapse-' + i%>">
-                <div class="card card-body">
-                    Option <%= data.questions[i].answer %>. <%= data.questions[i].explanation %> 
+                <div class="card card-body d-flex">
+                    <b>Heading <%= data.questions[i].answer %>. </b>
                 </div>
             </div>
         </div>

@@ -66,6 +66,67 @@ const mc = {
       }
     ]
 }
+const mh = {
+    "article": "<h4>The Rise of Urban Farming</h4><p><b>A.</b> The movement known as urban farming has gained significant momentum in recent years, driven by a confluence of factors.  Growing concerns about food security, environmental sustainability, and the desire for fresh, locally-sourced produce have spurred the transformation of urban spaces into productive gardens and farms. This trend extends beyond individual households, with community gardens, rooftop farms, and even vertical farming systems emerging as innovative solutions to urban food challenges. </p><p><b>B.</b> One of the key drivers behind urban farming is the increasing awareness of food security concerns.  As populations grow and urban areas expand, the reliance on traditional agricultural systems faces mounting pressure. Urban farming offers a viable alternative by producing food closer to where it is consumed, reducing transportation costs and reliance on distant agricultural regions. This localized approach fosters resilience in food systems, enabling communities to access fresh produce even in times of disruption.</p><p><b>C.</b> Urban farming also plays a crucial role in environmental sustainability. By growing food within urban environments, it reduces the environmental impact associated with long-distance food transportation. Furthermore, urban farms often employ sustainable practices, such as composting and organic farming methods, which help to reduce waste and improve soil health. The presence of green spaces in urban areas also contributes to the mitigation of urban heat island effects and enhances biodiversity.</p><p><b>D.</b>  The rise of urban farming has also been fueled by the growing consumer demand for fresh, locally-sourced produce. Consumers are increasingly interested in knowing the origin of their food and its impact on the environment. Urban farms provide a transparent and traceable supply chain, allowing consumers to connect directly with the producers and learn about the sustainable practices employed.  </p><p><b>E.</b> While urban farming presents numerous benefits, it also faces challenges.  Finding suitable land in densely populated urban areas can be difficult.  Access to water, sunlight, and infrastructure can be limited, and urban farming initiatives may encounter resistance from established agricultural interests. Overcoming these obstacles requires collaboration among city planners, farmers, and community members to ensure the long-term success of urban farming initiatives.</p>",
+    "headings": [
+      "Urban Farming: A Sustainable Solution",
+      "Obstacles to Urban Farming",
+      "The Growing Demand for Local Food",
+      "Food Security and the Urban Landscape",
+      "Urban Farming: A New Frontier in Agriculture",
+      "Environmental Benefits of Urban Farming"
+    ],
+    "questions": [
+      {
+        "paragraph": "A",
+        "answer": "v"
+      },
+      {
+        "paragraph": "B",
+        "answer": "iv"
+      },
+      {
+        "paragraph": "C",
+        "answer": "vi"
+      },
+      {
+        "paragraph": "D",
+        "answer": "iii"
+      },
+      {
+        "paragraph": "E",
+        "answer": "ii"
+      }
+    ]
+}
+
+function countMatches(string, regex) {
+    let match;
+    let count = 0;
+    
+    while ((match = regex.exec(string)) !== null) {
+        
+      count++;
+    }
+  
+    return count;
+}
+
+function integerToRoman(num) {
+    const values = 
+        [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    const symbols = 
+        ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+    let roman = '';
+    for (let i = 0; i < values.length; i++) {
+        while (num >= values[i]) {
+            roman += symbols[i];
+            num -= values[i];
+        }
+    }
+    
+    return roman;
+}
 
 router.post("/", async (req, res) => {
     if(!req.body || !req.body.taskType ) {
@@ -84,11 +145,14 @@ router.post("/", async (req, res) => {
             });
             return
         case "2":
-            taskType = "IELTS Academic Reading Match Headings";    
+            taskType = "IELTS Academic Reading Matching Headings";    
             // let text = await questionService.readingTask(taskType);
-            // let mc = parserService.parseJSON(text);
+            // let mh = parserService.parseJSON(text);
+
+            let numParagraph = countMatches(mh.article, /<\/p>/g);
+            let lastHeadingRoman = integerToRoman(mh.headings.length).toLowerCase();
             res.render("reading-mh", {
-                data: mc, taskType
+                data: mh, taskType,  numParagraph, lastHeadingRoman
             });
             return
         
