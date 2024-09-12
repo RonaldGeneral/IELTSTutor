@@ -1,0 +1,54 @@
+<div class="w-100 m-auto p-5 bg-light">
+
+    <div class="">
+        <div>
+            <h3 class="py-4">
+                <%= taskType %>
+            </h3>
+        </div>
+        <div class="fs-6 lh-lg">
+            <%- data.article %>
+        </div>
+    </div>
+    <div class="fs-6 lh-lg mt-4">
+        <p><b>Do the following statements agree with the information given in the reading passage?</b></p>
+        <p>Write</p>
+        <ul>
+            <li><b>TRUE</b> - if the statement agrees with the information</li>
+            <li><b>FALSE</b> - if the statement contradicts the information</li>
+            <li><b>NOT GIVEN</b> - if there is no information on this in the passage</li>
+        </ul>
+    </div>
+
+    <% for(var i=0; i < data.statements.length; i++) { %>
+        <div class="border p-4 rounded-3 mt-5">
+            <b class="pb-3">Q<%= i+1 %></b>
+            <span class="d-block fs-6 my-3">
+                <%- data.statements[i].statement %>
+            </span>
+
+            <label class="form-check-label d-block my-2 fs-6" for="<%= 'option-'+ i + '-' + 1 %>">
+                <input class="form-check-input" type="radio" name="<%= 'option-'+ i %>" id="<%= 'option-'+ i + '-' + 1 %>">
+                True
+            </label>
+            <label class="form-check-label d-block my-2 fs-6" for="<%= 'option-'+ i + '-' + 2 %>">
+                <input class="form-check-input" type="radio" name="<%= 'option-'+ i %>" id="<%= 'option-'+ i + '-' + 2 %>">
+                False
+            </label>
+            <label class="form-check-label d-block my-2 fs-6" for="<%= 'option-'+ i + '-' + 3 %>">
+                <input class="form-check-input" type="radio" name="<%= 'option-'+ i %>" id="<%= 'option-'+ i + '-' + 3 %>">
+                Not Given
+            </label>
+
+            <button class="btn btn-outline-dark my-2" 
+                type="button" data-bs-toggle="collapse" data-bs-target="#<%= 'collapse-' + i%>" aria-expanded="false" aria-controls="<%= 'collapse-' + i%>">
+                Show answer
+            </button>
+            <div class="collapse" id="<%= 'collapse-' + i%>">
+                <div class="card card-body">
+                    <b><%= data.statements[i].answer.toUpperCase() %></b><%= data.statements[i].explanation %> 
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div>

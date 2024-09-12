@@ -99,6 +99,41 @@ const mh = {
       }
     ]
 }
+const tfn = {
+    "article": "<h4>The Rise of Electric Vehicles</h4><p>Electric vehicles (EVs) are rapidly gaining popularity worldwide, driven by concerns about climate change and the increasing cost of fossil fuels. EVs offer several advantages over traditional gasoline-powered vehicles, including lower running costs, reduced emissions, and a quieter driving experience. However, there are also challenges associated with the widespread adoption of EVs, such as limited driving range, high upfront cost, and a lack of charging infrastructure in many areas.</p><p>The driving range of EVs is improving rapidly, but it remains a concern for many potential buyers. Most EVs can travel between 100 and 300 miles on a single charge, which is sufficient for daily commutes but may not be enough for longer trips. High upfront costs are another barrier to EV adoption. While the cost of batteries is decreasing, EVs are generally more expensive to purchase than gasoline-powered cars. This price difference can be a significant factor for budget-conscious consumers.</p><p>Another obstacle to EV adoption is the lack of a robust charging infrastructure. Public charging stations are still relatively scarce, especially in rural areas. This can make it difficult for EV owners to charge their vehicles when they are away from home. Despite these challenges, the future of EVs looks bright. Governments and private companies are investing heavily in research and development, battery technology is advancing rapidly, and the availability of charging infrastructure is steadily increasing.</p>",
+    "statements": [
+      {
+        "statement": "Electric vehicles are becoming more popular due to concerns about climate change.",
+        "answer": "true",
+        "explanation": "The article states that EVs are gaining popularity due to concerns about climate change."
+      },
+      {
+        "statement": "Electric vehicles are always more expensive to purchase than gasoline-powered cars.",
+        "answer": "false",
+        "explanation": "The article states that while battery costs are decreasing, EVs are generally more expensive to purchase than gasoline-powered cars. The word 'generally' implies there may be exceptions."
+      },
+      {
+        "statement": "The cost of batteries is a significant factor in the high upfront cost of EVs.",
+        "answer": "true",
+        "explanation": "The article mentions that the decreasing cost of batteries is a factor influencing the high initial cost of EVs."
+      },
+      {
+        "statement": "The availability of charging infrastructure is increasing rapidly.",
+        "answer": "false",
+        "explanation": "The article states that the availability of charging infrastructure is steadily increasing, which implies a slower rate of increase."
+      },
+      {
+        "statement": "Electric vehicles offer a quieter driving experience than gasoline-powered cars.",
+        "answer": "true",
+        "explanation": "The article lists a quieter driving experience as an advantage of EVs."
+      },
+      {
+        "statement": "The driving range of EVs is no longer a concern for potential buyers.",
+        "answer": "false",
+        "explanation": "The article states that driving range remains a concern for many potential buyers, even though it is improving."
+      }
+    ]
+}
 
 function countMatches(string, regex) {
     let match;
@@ -135,6 +170,9 @@ router.post("/", async (req, res) => {
     }
 
     let taskType;
+    let numParagraph;
+    let lastHeadingRoman;
+
     switch(req.body.taskType) {
         case "1":
             taskType = "IELTS Academic Reading Multiple Choice";    
@@ -149,10 +187,20 @@ router.post("/", async (req, res) => {
             // let text = await questionService.readingTask(taskType);
             // let mh = parserService.parseJSON(text);
 
-            let numParagraph = countMatches(mh.article, /<\/p>/g);
-            let lastHeadingRoman = integerToRoman(mh.headings.length).toLowerCase();
+            numParagraph = countMatches(mh.article, /<\/p>/g);
+            lastHeadingRoman = integerToRoman(mh.headings.length).toLowerCase();
             res.render("reading-mh", {
                 data: mh, taskType,  numParagraph, lastHeadingRoman
+            });
+            return
+
+        case "3":
+            taskType = "IELTS Academic Reading True/False/Not given";    
+            // let text = await questionService.readingTask(taskType);
+            // let tfn = parserService.parseJSON(text);
+
+            res.render("reading-tfn", {
+                data: tfn, taskType
             });
             return
         

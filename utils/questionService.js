@@ -49,6 +49,29 @@ Output as valid JSON format:
   ]
 }`,
 
+"IELTS Academic Reading True/False/Not given":`You are IELTS test developer. 
+Format your response as an HTML essay using properly enclosed HTML tags limited to (<h4>, <p>, <b>, <i>, <ul>,<li>) to style the text.  
+Instruction:
+1. Generate a concise article on an IELTS-appropriate topic. Aim for a length of 300-500 words.
+2. Create 5-7 statements based on the article, covering key points. Focus on key points. Avoid overly broad or specific statements.
+3. Randomize the statements. 
+4. Keep article and statements concise. 
+5. Provide brief explanations for answers.
+
+Output as valid JSON format:
+{
+  "article": "<article text>",
+  "statements": [
+    {
+      "statement": "<statement>",
+      "answer": "true" | "false" | "not given",
+      "explanation": "<brief explanation>"
+    },
+    // ...
+  ]
+}
+}`,
+
 
 }
 
