@@ -37,10 +37,44 @@
 </div>
 <div class="bg-light p-4 w-75 m-auto px-5 d-none" id="reading-div">
     <form action="/reading" method="post">
-        <h4>Task 1</h4>
-        <p>In Task 1, you are asked to describe some visual information (graph/table/chart/diagram). You need to write 150 words in about 20 minutes.</p>
+        <h4>Range number of question</h4>
+        <div class="input-group mb-3 w-50">
+            <input type="number" name="min" id="min" class="form-control" value="3">
+            <span class="input-group-text">-</span>
+            <input type="number" name="max" id="max" class="form-control" value="8">
+        </div>
+        <span class="text-danger" id="maxError"></span>
+        <script>
+            function checkValues() {
+                if (parseInt($("#min").val()) > parseInt($("#max").val())) {
+                    $("#maxError").text("Max Value should be greater than or equals to Min Value");
+                    $("#generateReading").attr("disabled", true);
+                }
+                else {
+                    $("#maxError").text("");
+                    $("#generateReading").attr("disabled", false);
+                }
+            }
 
-        <button class="btn btn-primary my-3">Generate</button>
+            $('#min').on('change', checkValues);
+            $('#max').on('change', checkValues);
+        </script>
+        <h4>Question Type</h4>
+        <div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="taskType" id="task1" checked>
+                <label class="form-check-label" for="task1">
+                    Multiple choice
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="taskType" id="task2">
+                <label class="form-check-label" for="task2">
+                    Matching headings
+                </label>
+            </div>
+        </div>
+        <button id="generateReading" class="btn btn-primary my-3">Generate</button>
     </form>
 </div>
 <script>

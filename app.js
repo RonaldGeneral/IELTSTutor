@@ -24,7 +24,9 @@ app.get("/question-type", (req, res) => {
 })
 
 const writingRouter = require('./routes/writing')
+const readingRouter = require('./routes/reading')
 
 app.use("/writing", writingRouter)
+app.use("/reading", readingRouter)
 
 app.listen(port, () => console.info(`App listening on port ${port}`))
