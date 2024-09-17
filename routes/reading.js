@@ -134,6 +134,41 @@ const tfn = {
       }
     ]
 }
+const sc = {
+  "article": "<h4>The Rise of the Sharing Economy</h4>\n<p>The sharing economy, a phenomenon characterized by the sharing of assets, services, and spaces, has experienced remarkable growth in recent years. This shift in consumer behavior, driven by factors such as technological advancements and a growing desire for access over ownership, has disrupted traditional industries and created new opportunities. Platforms like Airbnb, Uber, and TaskRabbit connect individuals seeking goods or services with those willing to provide them, fostering a sense of community and economic empowerment.</p>\n<p>One of the key drivers of the sharing economy is the rise of mobile technology. Smartphones and mobile apps have enabled seamless communication and transaction processes, making it easier for individuals to connect and engage in sharing activities. Furthermore, the increasing availability of affordable internet access has facilitated the expansion of online platforms that facilitate these transactions. The ease with which individuals can access and use these platforms has significantly contributed to the widespread adoption of the sharing economy.</p>\n<p>Beyond technological advancements, the sharing economy has been fueled by a shift in societal values. Many consumers are increasingly drawn to the idea of sustainability and resource efficiency. The sharing economy promotes this by reducing consumption and encouraging the reuse of existing resources. Additionally, the emphasis on community building and collaborative consumption has resonated with younger generations who value social connection and experiences over material possessions.</p>\n<p>The rise of the sharing economy has had a profound impact on various industries. Traditional hospitality, transportation, and service sectors have been challenged by the emergence of new players, while new business models have emerged. As the sharing economy continues to evolve, it is likely to have a significant impact on the future of work and consumption patterns.</p>",
+  "sentences": [
+    {
+      "sentence": "The sharing economy is a trend that involves the ____ of assets, services, and spaces.",
+      "answer": "sharing",
+      "explanation": "The first sentence of the article defines the sharing economy."
+    },
+    {
+      "sentence": "The growth of the sharing economy is attributed to ____ advancements and a change in consumer values.",
+      "answer": "technological",
+      "explanation": "The second paragraph mentions the role of technology in the sharing economy."
+    },
+    {
+      "sentence": "Mobile technology has played a key role in ____ the sharing economy.",
+      "answer": "facilitating",
+      "explanation": "The second paragraph discusses how mobile technology makes sharing easier."
+    },
+    {
+      "sentence": "Consumers are increasingly interested in ____ and resource efficiency.",
+      "answer": "sustainability",
+      "explanation": "The third paragraph highlights the connection between the sharing economy and sustainability."
+    },
+    {
+      "sentence": "The sharing economy emphasizes ____ building and collaborative consumption.",
+      "answer": "community",
+      "explanation": "The third paragraph mentions the focus on community in the sharing economy."
+    },
+    {
+      "sentence": "The sharing economy has ____ traditional industries and created new opportunities.",
+      "answer": "disrupted",
+      "explanation": "The first paragraph highlights the disruptive nature of the sharing economy."
+    }
+  ]
+}
 
 function countMatches(string, regex) {
     let match;
@@ -201,6 +236,16 @@ router.post("/", async (req, res) => {
 
             res.render("reading-tfn", {
                 data: tfn, taskType
+            });
+            return
+
+        case "4":
+            taskType = "IELTS Academic Reading Sentence Completion";    
+            // let text = await questionService.readingTask(taskType);
+            // let sc = parserService.parseJSON(text);
+
+            res.render("reading-sc", {
+                data: sc, taskType
             });
             return
         

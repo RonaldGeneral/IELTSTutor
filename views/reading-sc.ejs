@@ -1,0 +1,40 @@
+<div class="w-100 m-auto p-5 bg-light">
+
+    <div class="">
+        <div>
+            <h3 class="py-4">
+                <%= taskType %>
+            </h3>
+        </div>
+        <div class="fs-6 lh-lg">
+            <%- data.article %>
+        </div>
+        <div class="fs-6 mt-4">
+            <hr />
+            <p>Complete the sentences below.</p>
+
+            <p>Write <b>NO MORE THAN 2 WORDS</b> from the passage for each answer.</p>
+            <hr/>
+        </div>
+    </div>
+
+    <% for(var i=0; i < data.sentences.length; i++) { %>
+        <div class="border p-4 rounded-3 mt-5">
+            <b class="pb-3">Q<%= i+1 %></b>
+            <span class="d-block fs-6 my-3">
+                <%= data.sentences[i].sentence %>
+            </span>
+            <input class="form-control w-25" >
+            
+            <button class="btn btn-outline-dark my-2" 
+                type="button" data-bs-toggle="collapse" data-bs-target="#<%= 'collapse-' + i%>" aria-expanded="false" aria-controls="<%= 'collapse-' + i%>">
+                Show answer
+            </button>
+            <div class="collapse" id="<%= 'collapse-' + i%>">
+                <div class="card card-body d-flex">
+                    <b><%= data.sentences[i].answer %></b> <%= data.sentences[i].explanation %>
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div>

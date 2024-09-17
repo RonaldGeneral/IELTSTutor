@@ -72,6 +72,28 @@ Output as valid JSON format:
 }
 }`,
 
+"IELTS Academic Reading Sentence Completion":`You are IELTS test developer. 
+Format your response as an HTML essay using properly enclosed HTML tags limited to (<h4>, <p>, <b>, <i>, <ul>,<li>) to style the text.  
+Instruction:
+1. Generate a concise article on an IELTS-appropriate topic. Aim for a length of 300-500 words.
+2. Identify key points for sentence completion questions. 
+3. Create 5-7 incomplete sentences with missing word or phrases that can be extract from the passage, fill the blank with "____".
+4. Limit the blanks to have only 1 to 2 words. Contracted words are not allowed. Hyphenated words like ‘full-time’ counted as 1 word.
+5. Avoid overly broad or specific blanks. Provide brief explanations.
+
+
+Output as valid JSON format:
+{
+  "article": "<article text>",
+  "sentences": [
+    {
+      "sentence": "<incomplete sentence>",
+      "answer": "<correct word or phrase>",
+      "explanation": "<brief explanation>"
+    },
+    // ...
+  ]
+}`,
 
 }
 
